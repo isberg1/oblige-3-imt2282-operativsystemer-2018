@@ -6,7 +6,10 @@
   Author: Alexander Jakobsen, 16BITSEC, Studentnr: 473151, e-mail: alexajak@stud.ntnu.no
   Created on March 26, 2018
   Created with Windows powerShell ISE in Windows 10
-
+  
+  Tested in: 
+  PSVersion: 5.1.16299.251
+  PSEdition: Desktop
 #>
 
 
@@ -24,50 +27,64 @@ function meny () {
   Write-Output "9 - Avslutt dette scriptet"
 }
 
-#  - Hvor lenge er det siden siste boot?"
+#  2 - Hvor lenge er det siden siste boot?"
 function oppetid () { 
+
   Write-Output "maskinen har vært oppe i: "
+     
      # hent verdien "Uptime", formater den og skriv den til consol
   (Get-Uptime).uptime | Format-Table -Property Days, Hours, Minutes, Seconds
+
 }
 
-# - Hvor mange prosesser og traader finnes?"
+# 3 - Hvor mange prosesser og traader finnes?"
 function aktiviteter () {
+  
      # finn basis objekter
   $a = $(Get-Process)   
+     
      # finn antall av hver type og adder de 2 relevanter tallene fra basis objekt
-  Write-Output "Det finnes  $($(($a).threads.id.length) + $(($a).threads.id.length)) prosesser og tårer" 
+  Write-Output "Det finnes  $($(($a).length) + $(($a).threads.id.length)) prosesser og tårer" 
+
 }
 
-#  - Hvor mange context switch'er fant sted siste sekund?
+#  4 - Hvor mange context switch'er fant sted siste sekund?
 function context () {
+ 
   Write-Output "Antall Context Switcher det siste sekundet var: "
     # hent ut og print relevant tall til consol
   Write-Output  "$((Get-CimInstance -ClassName Win32_PerfFormattedData_PerfOS_System).ContextSwitchesPersec)"
+
 }
 
-#  - Hvor mange interrupts fant sted siste sekund?
+#  6 - Hvor mange interrupts fant sted siste sekund?
 function interrupts () {
+     
       # fin riktig objekter
   $a = (Get-CimInstance -ClassName Win32_PerfFormattedData_Counters_ProcessorInformation)
       # finn relevant objekt og verdi
-  $b = $(  ($a | Where-Object {$_.Name -eq "_Total" }).InterruptsPersec )
+  $b = $( ($a | Where-Object {$_.Name -eq "_Total" }).InterruptsPersec )
+      
       # print verdi til consol
   Write-Output "Antall interrupts siste sekund var: $b"
+
 }
 
-#  - Hvor stor andel av CPU-tiden ble benyttet i Privileged mode og i user mode siste sekund?"
+#  5 - Hvor stor andel av CPU-tiden ble benyttet i Privileged mode og i user mode siste sekund?"
 Function modes () {
+    
       # ta en måling av bruk
   $a = $(((Get-Counter -counter "\Processor(*)\% Privileged Time", "\Processor(*)\% User Time" ).CounterSamples | Where-Object {$_.InstanceName -match "_total"  }))
       # finn % i Privileged mode + formater med kun 2 desimaltall
   $Privileged = $("{0:F2}" -f ($a | Where-Object {$_.Path -match "privileged" }).CookedValue )
       # finn % i user mode + formater med kun 2 desimaltall
   $user = $("{0:F2}" -f ($a | Where-Object {$_.Path -match "user" }).CookedValue )
+      
       # print verdier til consol
   Write-Output "andel tid i user mode var:  $user %"
   Write-Output "andel tid i Privileged var:  $Privileged %"
   Write-Output "resten av tiden var prosessoren i idle mode"
+
 }
 
 ##############  Main  ###############
