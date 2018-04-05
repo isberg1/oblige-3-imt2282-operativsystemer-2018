@@ -30,11 +30,15 @@ function meny () {
 #  2 - Hvor lenge er det siden siste boot?"
 function oppetid () { 
 
-  Write-Output "maskinen har vært oppe i: "
+  
      
-     # hent verdien "Uptime", formater den og skriv den til consol
-  (Get-Uptime).uptime | Format-Table -Property Days, Hours, Minutes, Seconds
+     # hent tiden siden last boot, formater den og skriv den til consol
+ $a = $($((Get-CimInstance -ClassName win32_operatingsystem).LocalDateTime -`
+          (Get-CimInstance -ClassName win32_operatingsystem).LastBootUpTime )|`
+           Format-Table Days, hours, minutes, seconds)
 
+ Write-Output "last boot var: "
+ $a
 }
 
 # 3 - Hvor mange prosesser og traader finnes?"
@@ -57,19 +61,6 @@ function context () {
 
 }
 
-#  6 - Hvor mange interrupts fant sted siste sekund?
-function interrupts () {
-     
-      # fin riktig objekter
-  $a = (Get-CimInstance -ClassName Win32_PerfFormattedData_Counters_ProcessorInformation)
-      # finn relevant objekt og verdi
-  $b = $( ($a | Where-Object {$_.Name -eq "_Total" }).InterruptsPersec )
-      
-      # print verdi til consol
-  Write-Output "Antall interrupts siste sekund var: $b"
-
-}
-
 #  5 - Hvor stor andel av CPU-tiden ble benyttet i Privileged mode og i user mode siste sekund?"
 Function modes () {
     
@@ -86,6 +77,20 @@ Function modes () {
   Write-Output "resten av tiden var prosessoren i idle mode"
 
 }
+
+#  6 - Hvor mange interrupts fant sted siste sekund?
+function interrupts () {
+     
+      # fin riktig objekter
+  $a = (Get-CimInstance -ClassName Win32_PerfFormattedData_Counters_ProcessorInformation)
+      # finn relevant objekt og verdi
+  $b = $( ($a | Where-Object {$_.Name -eq "_Total" }).InterruptsPersec )
+      
+      # print verdi til consol
+  Write-Output "Antall interrupts siste sekund var: $b"
+
+}
+
 
 ##############  Main  ###############
 
