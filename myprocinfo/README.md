@@ -3,6 +3,8 @@ README #
 ### What is this repository for? ###
 
   11.7 Lab exercises b) (OBLIG) Prosesser og traader.
+  
+  vær obs på at det er 2 oppgaver i kompendiet som heter: b)(OBLIG) Prosesser og traader
 
 ### How do I run program? ###
 
@@ -14,7 +16,7 @@ kjoor kommando:
     
     .\myprocinfo.ps1
 	
-velg den funksjonen du vil kjÃ¸re fra menyen, eller tast 9 for avslutt
+velg den funksjonen du vil kjøre fra menyen, eller tast 9 for avslutt
     
 
 ### code quality ###
