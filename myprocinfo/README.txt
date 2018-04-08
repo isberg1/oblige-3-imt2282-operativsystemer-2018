@@ -37,6 +37,9 @@ den ene testene som Erik H. anbefaler til paa siden(8.4.2018):
   
   Kjoorte foolgende:
   
+# som administrator
+      Install-Module -Name PSScriptAnalyzer
+  
       Invoke-ScriptAnalyzer .\myprocinfo.ps1
        
   Resultat:
