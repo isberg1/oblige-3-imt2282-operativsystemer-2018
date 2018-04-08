@@ -4,7 +4,7 @@ README #
 
  13.10 Lab exercises b) (OBLIG) Prosesser og traader
  
- vÃ¦r obs pÃ¥ at det er 2 oppgaver i kompendiet som heter: b)(OBLIG) Prosesser og traader 
+ vær obs på at det er 2 oppgaver i kompendiet som heter: b)(OBLIG) Prosesser og traader 
 
 ### How do I run program? ###
 
@@ -15,6 +15,12 @@ start Chrome
 i terminalen: flytt deg til den mappen som har dette scriptet
 
 kjoor kommando:
+
+som admin 
+
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned     
+    
+bekreft valg med Y
     
     .\prosesserOgTraader.ps1
     
