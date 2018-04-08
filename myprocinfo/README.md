@@ -13,6 +13,12 @@ last ned repo
 i terminalen: flytt deg til den mappen som har dette scriptet
 
 kjoor kommando:
+
+som admin 
+
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned     
+    
+bekreft valg med Y
     
     .\myprocinfo.ps1
 	
