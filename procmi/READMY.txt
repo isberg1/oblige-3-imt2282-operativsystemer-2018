@@ -4,6 +4,9 @@ README #
 
   12.4 Lab exercises d) (OBLIG) En prosess sin bruk av virtuelt og fysisk minne.
 
+  dette programmet er laget for Engelsk språklig PowerShell, 
+  å kjøre det på Norsk språklig PowerShell kan resultere i at det ikke fungerer
+
 ### How do I run program? ###
 
 last ned repo
