@@ -63,9 +63,11 @@ function context () {
 
 #  5 - Hvor stor andel av CPU-tiden ble benyttet i Privileged mode og i user mode siste sekund?"
 Function modes () {
+
     
+
       # ta en måling av bruk
-  $a = $(((Get-Counter -counter "\Processor(*)\% Privileged Time", "\Processor(*)\% User Time" ).CounterSamples | Where-Object {$_.InstanceName -match "_total"  }))
+  $a =  ((Get-Counter -Counter "\\$(hostname)\processor(_total)\% user time", "\\$(hostname)\processor(_total)\% privileged time").CounterSamples)
       # finn % i Privileged mode + formater med kun 2 desimaltall
   $Privileged = $("{0:F2}" -f ($a | Where-Object {$_.Path -match "privileged" }).CookedValue )
       # finn % i user mode + formater med kun 2 desimaltall
