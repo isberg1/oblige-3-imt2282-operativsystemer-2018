@@ -7,7 +7,7 @@ README #
   vær obs på at det er 2 oppgaver i kompendiet som heter: b)(OBLIG) Prosesser og traader
 
   dette programmet er laget for Engelsk språklig PowerShell, 
-  å kjøre det på Norsk språklig PowerShell kan resultere i at det ikke fungerer 
+  å kjøre det på Norsk-språklig PowerShell kan resultere i at det ikke fungerer 
 
 ### How do I run program? ###
 
